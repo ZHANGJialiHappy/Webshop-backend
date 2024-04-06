@@ -58,7 +58,7 @@ export async function login(username, password) {
 // create a new customer
 export async function add(newCustomer) {
   let customerArray = await getAll();
-  if (findCustomer(customerArray, newCustomer.customerId) !== -1)
+  if (findCustomerById(customerArray, newCustomer.customerId) !== -1)
     throw new Error(
       `Customer with Id:${newCustomer.customerId} already exists`
     );
@@ -69,7 +69,7 @@ export async function add(newCustomer) {
 // update existing customer
 export async function update(customerId, customer) {
   let customerArray = await getAll();
-  let index = findCustomer(customerArray, customerId); // findIndex
+  let index = findCustomerById(customerArray, customerId); // findIndex
   if (index === -1)
     throw new Error(`Customer with ID:${customerId} doesn't exist`);
   else {
@@ -81,7 +81,7 @@ export async function update(customerId, customer) {
 // delete existing customer
 export async function remove(customerId) {
   let customerArray = await getAll();
-  let index = findCustomer(customerArray, customerId); // findIndex
+  let index = findCustomerById(customerArray, customerId); // findIndex
   if (index === -1)
     throw new Error(`Customer with ID:${customerId} doesn't exist`);
   else {
